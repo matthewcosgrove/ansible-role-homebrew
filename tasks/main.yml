@@ -6,6 +6,18 @@
   changed_when: false
   always_run: true
 
+- name: List usr permissions
+  command: ls -ltr /usr
+  register: usr_var
+
+- name: List usr/local permissions
+  command: ls -ltr /usr/local
+  register: local_var
+
+- debug: var=usr_var
+
+- debug: var=local_var
+
 - name: Ensure Homebrew parent directory has correct permissions.
   file:
     path: "{{ homebrew_prefix }}"
